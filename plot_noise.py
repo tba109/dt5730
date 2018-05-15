@@ -25,7 +25,7 @@ h1 = TH1F("h1","",100,np.mean(x2)-100,np.mean(x2)+100)
 for xi in x2: 
     h1.Fill(xi)
 
-h1.GetXaxis().SetTitle("Flash ADC Samples")
+h1.GetXaxis().SetTitle("Waveform Samples")
 h1.GetXaxis().CenterTitle()
 h1.Draw()
 f1 = TF1("f1","gaus")
