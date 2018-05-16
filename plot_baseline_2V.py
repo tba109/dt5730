@@ -5,7 +5,7 @@ from ROOT import TH1F, TF1
 import sys
 
 
-fin = open('/home/tyler/DAQ/run/UNFILTERED/0@DT5730 #2-11-586_Data_run.csv','r')
+fin = open('/home/tyler/DAQ/DAQ/baseline_2v/UNFILTERED/0@DT5730 #2-11-586_Data_baseline_2v.csv','r')
 reader = csv.reader(fin,delimiter=';')
 header = reader.next()
 print header
@@ -20,13 +20,20 @@ for row in reader:
     for xi in x1: 
         x2.append(xi)
 
+xmu = np.mean(x2)
+cf = 0.121042459
+x3 = [(xi - xmu)*cf for xi in x2]
 
-h1 = TH1F("h1","",100,np.mean(x2)-100,np.mean(x2)+100)
-for xi in x2: 
+lo = np.mean(x3) - 2
+hi = np.mean(x3) + 2
+nb = int((hi-lo)/cf) + 1
+h1 = TH1F("h1","",nb,lo,hi)
+for xi in x3: 
     h1.Fill(xi)
 
-h1.GetXaxis().SetTitle("Waveform Samples")
+h1.GetXaxis().SetTitle("Baseline (mV)")
 h1.GetXaxis().CenterTitle()
 h1.Draw()
 f1 = TF1("f1","gaus")
+f1.SetNpx(10000)
 h1.Fit(f1); 
