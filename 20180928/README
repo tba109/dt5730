@@ -1,0 +1,20 @@
+Mon Oct  8 13:53:47 EDT 2018
+
+I worked with the plot_split_chan_spe_0p5v.py and data there for a while. 
+
+I can't seem to get things to look right. Resulting waveforms end up binning
+bimodally. Not sure what to do about this. 
+
+I suspect it has to do with the way the timestamp is determined. (BTW, that
+time stamp is 1ps units. I confirmed this using a pulser). This data was taken using DPP-PSD with
+each channel triggering independently, but using the time correlations software 
+option. The channels were triggering using CFD, but I don't quite remember the settings. 
+
+My understanding is that the timestamp (I think sometimes referred to as the time tag) is
+the point of trigger: threshold crossing for leading edge disc or zero crossing for CFD
+
+This has something to do with how that is determined, and the difficulty of backing that out
+after the fact, if all you have is that timestamp and the raw waveform data. 
+
+
+ 
